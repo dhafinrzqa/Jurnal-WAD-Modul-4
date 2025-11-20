@@ -23,7 +23,10 @@ class User extends Authenticatable
     // ===============1==============
     // Tambahkan kolom-kolom yang dapat diisi massal, termasuk 'role'.
     protected $fillable = [
-        
+        'name',
+        'email',
+        'password',
+        'role',
     ];    
 
     /**

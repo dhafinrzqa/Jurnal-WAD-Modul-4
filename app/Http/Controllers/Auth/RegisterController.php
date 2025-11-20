@@ -24,7 +24,9 @@ class RegisterController extends Controller
         // ===============1==============
         // Simpan data user baru yang sudah ter-validasi ke database dengan role 'mahasiswa'.
         User::create([
-            
+            'name' => $validated ['name'],
+            'email' => $validated ['email'],
+            'password' => $validated ['password'],
         ]);
 
         return redirect('/login')->with('success', 'Registrasi berhasil, silakan login!');

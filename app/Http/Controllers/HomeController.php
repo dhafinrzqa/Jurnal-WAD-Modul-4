@@ -11,6 +11,7 @@ class HomeController extends Controller
     // Ambil semua buku dari database, urutkan dari yang terbaru, dan kirimkan ke view 'home'.
     public function index()
     {
-        
+        $books = Book::latest()->get();
+        return view('home', compact('books'));
     }
 }

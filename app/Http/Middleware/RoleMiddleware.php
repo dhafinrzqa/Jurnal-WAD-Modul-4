@@ -13,7 +13,7 @@ class RoleMiddleware
 
         // ===============1==============
     // Periksa apakah pengguna terautentikasi dan apakah perannya sesuai dengan salah satu peran yang diizinkan.
-        if () {
+        if (!$user || !in_array($user->role, $roles)) {
             return redirect()->route('home')->with('error', 'Akses ditolak! Anda tidak memiliki izin untuk mengakses halaman tersebut!');
         }
 

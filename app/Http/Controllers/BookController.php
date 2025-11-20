@@ -12,21 +12,22 @@ class BookController extends Controller
     // Ambil semua buku dari database, urutkan dari yang terbaru, dan kirimkan ke view 'books.index'.
     public function index()
     {
-        
+        $books = Book::latest()->get();
+        return view('books.index', compact('books'));
     }
 
     // ===============2==============
     // Tampilkan detail buku tertentu berdasarkan buku dari parameter.
     public function show(Book $book)
     {
-        
+        return view('books.show' , compact('book'));
     }
 
     // ===============3==============
     // Tampilkan form untuk menambahkan buku baru.
     public function create()
     {
-        
+        return view('books.create');
     }
 
     public function store(Request $request)
@@ -53,7 +54,7 @@ class BookController extends Controller
     // Tampilkan form untuk mengedit buku tertentu berdasarkan buku dari parameter.
     public function edit(Book $book)
     {
-        
+        return view('books.edit', compact('book'));
     }
 
     public function update(Request $request, Book $book)
@@ -82,6 +83,8 @@ class BookController extends Controller
     // Akhirnya, alihkan kembali ke daftar buku dengan pesan sukses.
     public function destroy(Book $book)
     {
-        
+        $book->delete();
+        session()->flash('success', 'buku berhasil dihapus');
+        return redirect()->route('books.index');
     }
 }
